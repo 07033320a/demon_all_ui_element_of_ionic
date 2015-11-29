@@ -90,6 +90,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.contrib.frostedGlass', 'i
 
     .controller('PlaylistCtrl', function ($scope, $stateParams, PhoneService) {
         $scope.phone = PhoneService.get({phoneId: $stateParams.playlistId}, function(phone) {
+            debugger;
             $scope.mainImageUrl = phone.images[0];
         });
 
@@ -992,4 +993,95 @@ angular.module('starter.controllers', ['ionic', 'ionic.contrib.frostedGlass', 'i
         };
 
     })
+    .controller('TeamManageCtrl', function ($scope, DataFactory,$state) {
+
+        $scope.jumpTo = function (urlController,params){
+            $state.go(urlController,params, {reload: true});
+        }
+
+        $scope.items = [];
+
+        $scope.data = {
+            showDelete: false
+        };
+
+        $scope.new = function () {
+            $scope.jumpTo("app.teamedit",{});
+        };
+        $scope.edit = function (item) {
+            $scope.jumpTo("app.teamedit",{teamId:item.id});
+        };
+        $scope.share = function (item) {
+            alert('分享: ' + item.id);
+        };
+        $scope.view = function (item) {
+            $scope.jumpTo("app.teamview",{teamId:item.id});
+        };
+
+        $scope.moveItem = function (item, fromIndex, toIndex) {
+            $scope.items.splice(fromIndex, 1);
+            $scope.items.splice(toIndex, 0, item);
+        };
+
+        $scope.onItemDelete = function (item) {
+            $scope.items.splice($scope.items.indexOf(item), 1);
+        };
+
+        // get data on page load
+        DataFactory.getData(20).then(function (data) {
+            $scope.items = data;
+        });
+
+    })
+    .controller('TeamViewCtrl', function ($scope, $stateParams, DataFactory) {
+
+        //$scope.phone = PhoneService.get({phoneId: $stateParams.playlistId}, function(phone) {
+        //    debugger;
+        //    $scope.mainImageUrl = phone.images[0];
+        //});
+        //
+        //$scope.setImage = function(imageUrl) {
+        //    $scope.mainImageUrl = imageUrl;
+        //}
+    })
+    .controller('TeamEditCtrl', function ($scope, $stateParams, DataFactory) {
+        console.log($stateParams.teamId);
+
+        $scope.ratingArr = [{
+            value: 1,
+            icon: 'ion-ios-star-outline'
+        }, {
+            value: 2,
+            icon: 'ion-ios-star-outline'
+        }, {
+            value: 3,
+            icon: 'ion-ios-star-outline'
+        }, {
+            value: 4,
+            icon: 'ion-ios-star-outline'
+        }, {
+            value: 5,
+            icon: 'ion-ios-star-outline'
+        }];
+
+        $scope.setRating = function (val) {
+            var rtgs = $scope.ratingArr;
+            for (var i = 0; i < rtgs.length; i++) {
+                if (i < val) {
+                    rtgs[i].icon = 'ion-ios-star';
+                } else {
+                    rtgs[i].icon = 'ion-ios-star-outline';
+                }
+            }
+        }
+        //$scope.phone = PhoneService.get({phoneId: $stateParams.playlistId}, function(phone) {
+        //    debugger;
+        //    $scope.mainImageUrl = phone.images[0];
+        //});
+        //
+        //$scope.setImage = function(imageUrl) {
+        //    $scope.mainImageUrl = imageUrl;
+        //}
+    })
+
 ;

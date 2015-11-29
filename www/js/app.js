@@ -357,6 +357,32 @@
                             controller: 'DatePickerCtrl'
                         }}
                 })
+                .state('app.teammanage', {
+                    url: '/teammanage',
+                    views: {
+                        'menuContent': {
+                            templateUrl: 'templates/teammanage.html',
+                            controller: 'TeamManageCtrl'
+                        }}
+                })
+                .state('app.teamview', {
+                    url: "/teamview/:teamId",
+                    views: {
+                        'menuContent': {
+                            templateUrl: "templates/teamview.html",
+                            controller: 'TeamViewCtrl'
+                        }
+                    }
+                })
+                .state('app.teamedit', {
+                    url: "/teamedit/:teamId",
+                    views: {
+                        'menuContent': {
+                            templateUrl: "templates/teamedit.html",
+                            controller: 'TeamEditCtrl'
+                        }
+                    }
+                })
             ;
 
 
