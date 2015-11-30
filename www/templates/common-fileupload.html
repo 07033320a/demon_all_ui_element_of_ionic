@@ -1,0 +1,27 @@
+
+<form name="myForm">
+    <p>
+        <tt>myForm.myImage.$valid = {{myForm.myImage.$valid}}</tt>
+        <br/>
+        <tt>myForm.myImage.$error = {{myForm.myImage.$error}}</tt>
+        <br/>
+        <tt>myForm.$valid = {{myForm.$valid}}</tt>
+        <br/>
+        <tt>myForm.$error.image = {{!!myForm.$error.image}}</tt>
+        <br/>
+        <tt>myForm.$error.dimensions (height < 10000) = {{!!myForm.$error.dimensions}}</tt>
+        <br/>
+    </p>
+    <p>
+        <input type="file" name="myImage" image-with-preview ng-model="image" accept="image/jpeg,image/png" dimensions="height < 10000">
+      <span class="error" ng-show="myForm.myImage.$error.image">
+        Not a JPEG or a PNG!
+      </span>
+      <span class="error" ng-show="myForm.myImage.$error.dimensions">
+        Image height should be smaller than 10000!
+      </span>
+    </p>
+    <img ng-show="image.src" ng-src="{{image.src}}" />
+</form>
+
+

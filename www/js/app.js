@@ -2,7 +2,7 @@
     var app = angular.module('starter',
         ['ionic','ngIOS9UIWebViewPatch','ionicLazyLoad', 'ngMockE2E', 'ionic-datepicker', 'jett.ionic.filter.bar', 'ionic.contrib.frostedGlass', 'ion-autocomplete',
             'ionic.ion.autoListDivider','ionic.contrib.ui.hscrollcards','ion-gallery','monospaced.qrcode',
-            'angular-echarts', 'chart.js', 'starter.controllers', 'starter.services']);
+            'angular-echarts', 'chart.js', 'starter.controllers', 'starter.services','ngImageInputWithPreview']);
 
     app.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
         $ionicPlatform.ready(function () {
@@ -380,6 +380,24 @@
                         'menuContent': {
                             templateUrl: "templates/teamedit.html",
                             controller: 'TeamEditCtrl'
+                        }
+                    }
+                })
+                .state('app.commonfileupload', {
+                    url: "/commonfileupload",
+                    views: {
+                        'menuContent': {
+                            templateUrl: "templates/common-fileupload.html",
+                            controller: 'CommonFileUploadCtrl'
+                        }
+                    }
+                })
+                .state('app.headupload', {
+                    url: "/headupload",
+                    views: {
+                        'menuContent': {
+                            templateUrl: "templates/profile.html",
+                            controller: 'ProfileCtrl'
                         }
                     }
                 })
