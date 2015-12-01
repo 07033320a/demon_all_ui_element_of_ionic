@@ -149,6 +149,14 @@ div.hscroller {
 * image upload
 */
 
+.upload-select-btn{
+    width: 50% !important;
+    border-radius: 30px;
+    background-color: #FFF;
+    border-color: #FFF;
+    font-size: 15px;
+}
+
 .center{
     text-align: center;
 }
