@@ -1044,8 +1044,29 @@ angular.module('starter.controllers', ['ionic', 'ionic.contrib.frostedGlass', 'i
         //    $scope.mainImageUrl = imageUrl;
         //}
     })
-    .controller('TeamEditCtrl', function ($scope, $stateParams, DataFactory) {
-        console.log($stateParams.teamId);
+    .controller('TeamEditCtrl', ['$scope','$stateParams', '$ionicLoading', '$timeout','$rootScope','$ionicPopup','$ionicLoading','$http', function ($scope,$stateParams, $ionicLoading, $timeout,$rootScope, $ionicPopup, $ionicLoading,$http) {
+        $scope.teamData = {};
+        $scope.title = $stateParams.teamId;
+        $scope.showLoadingOverlay = function () {
+            $ionicLoading.show({
+                template: '正在玩命加载...'
+            });
+
+            // No text
+            // $ionicLoading.show();
+        };
+        $scope.hideLoadingOverlay = function () {
+            $ionicLoading.hide();
+        };
+
+        $scope.toggleOvelay = function () {
+            $scope.showLoadingOverlay();
+
+            // wait for 3 seconds and hide the overlay
+            $timeout(function () {
+                $scope.hideLoadingOverlay();
+            }, 3000);
+        };
 
         $scope.ratingArr = [{
             value: 1,
@@ -1073,16 +1094,42 @@ angular.module('starter.controllers', ['ionic', 'ionic.contrib.frostedGlass', 'i
                     rtgs[i].icon = 'ion-ios-star-outline';
                 }
             }
-        }
-        $scope.phone = PhoneService.get({phoneId: $stateParams.playlistId}, function(phone) {
-            debugger;
-            $scope.mainImageUrl = phone.images[0];
-        });
+            $scope.teamData.activity = val;
 
-        $scope.setImage = function(imageUrl) {
-            $scope.mainImageUrl = imageUrl;
         }
-    })
+
+        $scope.teamEdit = function(teamData){
+            debugger;
+            $http.put('http://localhost:8070/teams/saveTeam/', teamData).
+                success(function(data) {debugger
+                    $scope.names = data;
+                });
+
+        }
+        /**
+         Section for image uploader
+         **/
+        var imageUploaderPopup;
+
+        $scope.showUploader = function(){
+            imageUploaderPopup = $ionicPopup.show({
+                templateUrl: "templates/image-uploader.html",
+                scope : $scope
+            });
+            imageUploaderPopup.then(function(res) {
+            });
+        }
+
+        $scope.closeUploader = function(){
+            imageUploaderPopup.close();
+        }
+
+        $scope.setNewPic = function(newValue){
+            $scope.uploadedPic = newValue;
+            $scope.closeUploader();
+        }
+
+    }])
     .controller('ProfileCtrl', function($rootScope, $scope, $ionicPopup, $ionicLoading) {
         /**
          Section for image uploader
