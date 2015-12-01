@@ -4,8 +4,8 @@
     <div id="image-show">
         <div class="center">
             <input type="file" id="fileInput" ng-hide="true"/>
-            <input type="button" onclick="document.getElementById('fileInput').click()" value="Choose" ng-show="!preview" class="save-button" ng-style="buttonCSS('header', 'save')"/>
-            <input type="button" value="Save" ng-click="setNewPic(resImageDataURI)" ng-show="preview" class="save-button" ng-style="buttonCSS('header', 'save')"/>
+            <input type="button" onclick="document.getElementById('fileInput').click()" value="Choose" ng-show="!preview" class="save-button upload-select-btn" ng-style="buttonCSS('header', 'save')"/>
+            <input type="button" value="Save" ng-click="setNewPic(resImageDataURI)" ng-show="preview" class="save-button upload-select-btn" ng-style="buttonCSS('header', 'save')"/>
         </div>
         <div class="cropArea">
             <img-crop image="imageDataURI"
