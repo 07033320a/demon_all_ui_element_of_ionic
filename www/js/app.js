@@ -2,7 +2,7 @@
     var app = angular.module('starter',
         ['ionic','ngIOS9UIWebViewPatch','ionicLazyLoad', 'ngMockE2E', 'ionic-datepicker', 'jett.ionic.filter.bar', 'ionic.contrib.frostedGlass', 'ion-autocomplete',
             'ionic.ion.autoListDivider','ionic.contrib.ui.hscrollcards','ion-gallery','monospaced.qrcode',
-            'angular-echarts', 'chart.js', 'starter.controllers', 'starter.services','ngImageInputWithPreview']);
+            'angular-echarts', 'chart.js', 'starter.controllers', 'starter.services','ngImageInputWithPreview','ngImgCrop']);
 
     app.run(function ($ionicPlatform, $rootScope, $ionicLoading) {
         $ionicPlatform.ready(function () {
@@ -361,7 +361,7 @@
                     url: '/teammanage',
                     views: {
                         'menuContent': {
-                            templateUrl: 'templates/teammanage.html',
+                            templateUrl: 'templates/team/teammanage.html',
                             controller: 'TeamManageCtrl'
                         }}
                 })
@@ -369,7 +369,7 @@
                     url: "/teamview/:teamId",
                     views: {
                         'menuContent': {
-                            templateUrl: "templates/teamview.html",
+                            templateUrl: "templates/team/teamview.html",
                             controller: 'TeamViewCtrl'
                         }
                     }
@@ -378,7 +378,7 @@
                     url: "/teamedit/:teamId",
                     views: {
                         'menuContent': {
-                            templateUrl: "templates/teamedit.html",
+                            templateUrl: "templates/team/teamedit.html",
                             controller: 'TeamEditCtrl'
                         }
                     }
