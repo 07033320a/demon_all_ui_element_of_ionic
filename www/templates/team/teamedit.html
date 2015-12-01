@@ -1,0 +1,79 @@
+<ion-view view-title="{{title||'球员编辑'}}">
+
+    <ion-content class="padding">
+        <form ng-submit="teamEdit(teamData)">
+            <div class="list">
+                <div class="circle-image-container center">
+                    <a ng-click="showUploader()"><img ng-src="{{uploadedPic ? uploadedPic : '/img/default.png'}}" class="circular-image-profile" /></a>
+                </div>
+                <label class="item item-input">
+                    <span class="input-label">姓名</span>
+                    <input type="text" ng-model="teamData.username">
+                </label>
+                <label class=" item item-input item-select ">
+                    <div class="input-label ">
+                        性别
+                    </div>
+                    <select ng-model="teamData.sex">
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">年龄</span>
+                    <input type="number" ng-maxlength="20" placeholder="30" ng-model="teamData.age" >
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">职务</span>
+                    <input type="text" ng-model="teamData.business">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">球员简介</span>
+                    <textarea placeholder="请不要超过100字" ng-model="teamData.comment"></textarea>
+                </label>
+                <div class="item item-input">
+                    <span class="input-label">活跃度</span>
+                    <div>
+                        <a href="javascript:" ng-repeat="r in ratingArr" class="padding" style="text-decoration:none;">
+                            <i class="icon {{r.icon}}" ng-click="setRating(r.value)"></i>
+                        </a>
+                        <input type="hidden" id="dataActivity" ng-model="teamData.activity">
+                    </div>
+                </div>
+                <label class="item item-select">
+                    <span class="input-label">位置</span>
+                    <ul >
+                        <li class="item item-checkbox">
+                            <label class="checkbox checkbox-assertive">
+                                <input type="checkbox" ng-model="teamData.position.forward ">
+                            </label>
+                            前锋
+                        </li>
+                        <li class="item item-checkbox">
+                            <label class="checkbox">
+                                <input type="checkbox" ng-model="teamData.position.midfielder ">
+                            </label>
+                            中锋
+                        </li>
+                        <li class="item item-checkbox checkbox-energized">
+                            <label class="checkbox">
+                                <input type="checkbox" ng-model="teamData.position.defender">
+                            </label>
+                            后卫
+                        </li>
+                        <li class="item item-checkbox checkbox-calm">
+                            <label class="checkbox">
+                                <input type="checkbox" ng-model="teamData.position.goalkeeper">
+                            </label>
+                            守门员
+                        </li>
+                    </ul>
+                </label>
+            </div>
+            <button class="button button-full button-positive" type="submit">
+                提交
+            </button>
+        </form>
+    </ion-content>
+
+</ion-view>
